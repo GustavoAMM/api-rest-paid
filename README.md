@@ -17,9 +17,11 @@ Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 ## Índice:
 
 - [Estrucura del proyecto](#estructura-del-proyecto)
-- [Uso de Docker](#seccion-2)
+- [Uso de Docker](#uso-de-docker)
 - [Instalación](#instalacion)
-
+    - [Contenedor de MySQL](#contenedor-de-mysql)
+    - [Migraciones - Alembic](#migraciones---alembic)
+    - []
 
 
 
@@ -84,7 +86,7 @@ La carpeta "presentacion" contiene los archivos de Angular para la interfaz de u
 
 La carpeta "servicios" contiene los archivos de Django para la lógica del negocio. Esta carpeta se encarga de la comunicación con la base de datos y provee la funcionalidad para la API.
 
-## Docker[#seccion-2]
+## Uso de docker
 
 La tecnología de contenedores Docker se utiliza en este proyecto para orquestar los contenedores necesarios. Docker ofrece una solución eficiente y escalable para gestionar aplicaciones en diferentes entornos. Permite empaquetar una aplicación junto con sus dependencias en un contenedor, lo que facilita la portabilidad y la ejecución en diferentes plataformas.
 
@@ -92,7 +94,7 @@ En este caso, se utiliza un contenedor de MySQL para la base de datos, otro cont
 
 El uso de Docker permite una gestión más eficiente de la infraestructura de la aplicación, ya que cada contenedor se ejecuta en un entorno aislado y se pueden configurar diferentes versiones y dependencias de la aplicación. Además, el uso de contenedores permite una mayor flexibilidad en la implementación y escala de la aplicación, ya que se pueden agregar o eliminar contenedores según sea necesario.
 
-# Instalación {#instalacion}
+# Instalación
 
 Descargar el proyecto desde el repositorio de GitHub:
 
