@@ -18,11 +18,12 @@ Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
 - [Estrucura del proyecto](#estructura-del-proyecto)
 - [Uso de Docker](#uso-de-docker)
-- [Instalación](#instalacion)
+- [Instalación](#instalación)
     - [Contenedor de MySQL](#contenedor-de-mysql)
     - [Migraciones - Alembic](#migraciones---alembic)
-    - []
-
+    - [Presentación - Angular](#presentación---angular)
+    - [Servicios - Django](#servicios---django)
+    - [Docker Compose](#docker-compose)
 
 
 #  Estructura del proyecto
