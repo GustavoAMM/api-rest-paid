@@ -3,13 +3,13 @@ version: '3.7'
 services:
   db:
     image: mysql
-    container_name: mysql-plantillas
+    container_name: mysql-contenedor
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
     volumes:
       # - C:\Users\jgust\Documents\vol:/var/lib/mysql
-      - /home/angel/Plantillas/vol:/var/lib/mysql
+      - /home/angel/Documentos/vol:/var/lib/mysql
     ports:
       - 3306:3306
 
