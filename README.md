@@ -16,7 +16,7 @@ Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
 ## Índice:
 
-- [Extrucura del proyecto](#Escutura-del-proyecto)
+- [Extrucura del proyecto](#Escutura del proyecto)
 - [Uso de Docker](#seccion-2)
 - [Instalación](#instalacion)
 
