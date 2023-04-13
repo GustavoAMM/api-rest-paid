@@ -310,7 +310,9 @@ Dentro de la carpeta principal de nuestro proyecto, es decir, `paid`, ejecutamos
 docker-compose up
 ```
 
-Muchas veces el procesos va a fallar por que la base de datos no esta lista, para solucionar esto, SIN CERRAR EL PROCESO, ejecutamos el siguiente comando en OTRA terminal:
+Al principio va a dar error porque la base de datos no esta lista, pero en el docker-compose.yml tenemos un comando que espera a que la base de datos este lista para ejecutar el servidor de Django. asi que solo espera.
+
+Si no se inicializa el servidor de django, para solucionar esto, SIN CERRAR EL PROCESO, ejecutamos el siguiente comando en OTRA terminal:
 
 ```
 docker restart api
