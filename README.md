@@ -3,6 +3,7 @@
 Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
 > By: Gustavo A. M. M. - 2023
+>
 > Projecto Ejecutado en windows 11 y kali linux
 
 ## Tecnologias usadas:
@@ -22,7 +23,7 @@ Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
 
 
-##  Estructura del proyecto {estructura}
+##  Estructura del proyecto {#estructura}
 
 Este proyecto está dividido en tres carpetas principales: "logica", "presentacion" y "servicios".
 
@@ -91,7 +92,7 @@ En este caso, se utiliza un contenedor de MySQL para la base de datos, otro cont
 
 El uso de Docker permite una gestión más eficiente de la infraestructura de la aplicación, ya que cada contenedor se ejecuta en un entorno aislado y se pueden configurar diferentes versiones y dependencias de la aplicación. Además, el uso de contenedores permite una mayor flexibilidad en la implementación y escala de la aplicación, ya que se pueden agregar o eliminar contenedores según sea necesario.
 
-# Instalación {instalacion}
+# Instalación {#instalacion}
 
 Descargar el proyecto desde el repositorio de GitHub:
 
