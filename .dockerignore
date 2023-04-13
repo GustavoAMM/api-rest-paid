@@ -1,0 +1,19 @@
+**/__pycache__/
+# Ignorar archivos de registro
+*.log
+
+# Ignorar archivos de caché
+*.cache
+
+# Ignorar archivos de configuración local
+*.local
+
+# Ignorar archivos y carpetas generados por el IDE
+.idea/
+.vscode/
+
+# Ignorar archivos y carpetas específicos del proyecto
+config/
+data/
+tmp/
+
