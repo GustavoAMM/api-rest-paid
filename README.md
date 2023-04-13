@@ -68,7 +68,7 @@ Además, el proyecto utiliza un archivo docker-compose.yml para orquestar los co
 
 El archivo docker-compose.yml está configurado para exponer el puerto 3306 de MySQL para la comunicación con la base de datos, el puerto 80 para la presentación y el puerto 8000 para los servicios. También se han establecido volúmenes para persistir los datos de la base de datos.
 
-## Instalación
+# Instalación
 
 Descargar el proyecto desde el repositorio de GitHub:
 
@@ -78,7 +78,7 @@ git clone https://github.com/GustavoAMM/api-rest-paid
 
 > Cambia el nombre de la carpeta a paid
 
-### Contenedor de MySQL
+## Contenedor de MySQL
 
 Vamos a usar un volumen para persistir los datos de la base de datos. Para ello, creamos una carpeta llamada "vol" en el directorio Documentos de nuestro usuario
 
@@ -92,7 +92,7 @@ docker run --name mysql-contenedor -v /home/angel/Documentos/vol:/var/lib/mysql 
 > Si es windows cambia la ruta /home/usuario/Documentos/vol a C:\Users\usuario\Documents\vol
 > y asegurate de no tener un contenedor con el mismo nombre
 
-### Migraciones - Alembic
+## Migraciones - Alembic
 
 Dentro de la carpeta "logica" vamos a modificar TEMPORALMENTE los archivos:
 
@@ -146,7 +146,7 @@ sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
 string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
 ```
 
-### Presentacion - Angular
+## Presentacion - Angular
 
 Dentro de la carpeta "presentacion", ejecutamos el siguiente comando para instalar las dependencias:
 
@@ -174,7 +174,7 @@ Ahora creamos la imagen de Docker con el siguiente comando:
 ```
 docker build -t presentacion:1.0.0 .
 ```
-Comprobamos que la imagen se haya creado correctamente con el siguiente comando:
+Comprobamos que la imagen se haya creado correctamente puedes ver las imagenes de docker con el siguiente comando:
 
 ```
 docker images
