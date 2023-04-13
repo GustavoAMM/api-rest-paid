@@ -1,0 +1,59 @@
+<div class="container">
+  <form action="" class="basic-form" (submit)="onSubmit()">
+    <div class="formulario">
+      <h1>Formulario de registro</h1>
+      <span class="p-float-label">
+        <input
+          pInputText
+          id="nick_name"
+          name="nick_name"
+          [ngModel]="nick_name"
+          (ngModelChange)="nick_name = $event"
+        />
+        <label htmlFor="nick_name">Nick name</label>
+      </span>
+      <span class="p-float-label">
+        <input
+          pInputText
+          id="full_name"
+          name="full_name"
+          [ngModel]="full_name"
+          (ngModelChange)="full_name = $event"
+        />
+        <label htmlFor="full_name">Full name</label>
+      </span>
+    </div>
+    <div class="footer">
+      <button pButton pRipple label="Submit" class="p-button-primary"></button>
+      <div class="footer">
+        <form action="">
+          <button
+            pButton
+            pRipple
+            label="Ver datos"
+            class="p-button-help"
+            (click)="getDatos()"
+          ></button>
+        </form>
+        <p-dialog
+          header="Datos de usuarios"
+          [(visible)]="displayModal"
+          [modal]="true"
+          [responsive]="true"
+        >
+          <div *ngFor="let user of users">
+            <p>Nick name: {{ user.nick_name }}</p>
+            <p>Full name: {{ user.full_name }}</p>
+            <hr />
+          </div>
+        </p-dialog>
+      </div>
+    </div>
+  </form>
+
+  <div class="card">
+    <p-messages [(value)]="messages" [closable]="true"></p-messages>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

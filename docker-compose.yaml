@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  # docker run --name mysql-python
+  # -v C:\Users\jgust\Documents\vol:/var/lib/mysql 
+  # -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test 
+  # -d -p 3306:3306 mysql:latest
+
+  db:
+    image: mysql
+    container_name: mysql-contenedor
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+    volumes:
+      # - C:\Users\jgust\Documents\vol:/var/lib/mysql
+      - /home/angel/Documentos/vol:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  presentacion:
+    image: presentacion:1.0.0
+    container_name: presentacion
+    ports:
+      - 80:80
+
+  servicios:
+    # build: ./
+    restart: always
+    image: api:1.0.0
+    container_name: api
+    links:
+      - db
+    ports:
+      - 8000:8000
+    depends_on:
+      - db

@@ -1,0 +1,49 @@
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 420px;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fondo semi-transparente blanco */
+  backdrop-filter: blur(5px);
+  opacity: 1; /* Opacidad completa */
+  border-radius: 10px; /* Esquinas redondeadas */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+h1 {
+  text-align: center;
+  color: black;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 20px;
+  font-family: roboto;
+}
+label {
+  color: black;
+}
+
+.formulario {
+  display: grid;
+  gap: 30px;
+  margin: 20px;
+}
+
+.formulario input {
+  width: 100%;
+}
+.footer {
+  display: grid;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+
