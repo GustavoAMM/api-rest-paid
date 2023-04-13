@@ -245,7 +245,7 @@ Comprobamos que la imagen se haya creado correctamente puedes ver las imagenes d
 docker images
 ```
 
-Listo ya tenemos la imagen de Docker creada.
+Listo ya tenemos la imagen de nuestra api creada.
 
 >Sí llegaras a quere correr el proyecto individual de django, puedes hacerlo con el siguiente comando:
 >
@@ -253,7 +253,7 @@ Listo ya tenemos la imagen de Docker creada.
 >docker run -p 8000:8000 api:1.0.0
 >```
 >
->Pero tendrias que tener el contenedor de mysql corriendo, y modificar los archivos bd.py y alembic.ini para que apunten a 127.0.0.1:3306 en lugar de localhost y volver a crear esta imagen, para guardar los cambios.
+>Pero tendrias que tener el contenedor anteriormente dado de mysql corriendo, y modificar los archivos bd.py y alembic.ini para que apunten a 127.0.0.1:3306 en lugar de localhost y volver a crear esta imagen, para guardar los cambios.
 > Si es asi y despues de comprobar que funciona, elimina el contenedor de django y vuelve a crear la imagen con los archivos de bd.py y alembic.ini apuntando a bd en lugar de 127.0.0.1 o localhost (según sea el caso).
 
 
