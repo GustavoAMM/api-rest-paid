@@ -2,7 +2,28 @@
 
 Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
-## Estructura del proyecto
+> By: Gustavo A. M. M. - 2023
+> Projecto Ejecutado en windows 11 y kali linux
+
+## Tecnologias usadas:
+
+- Angular: utilizado para la parte de presentación del proyecto.
+- Django: utilizado para la creación de servicios web.
+- SQLAlchemy: utilizado como una biblioteca de Python para el manejo de bases de datos relacionales.
+- Alembic: utilizado como herramienta de migraciones de bases de datos que se integra con SQLAlchemy.
+- Docker: utilizado para la gestión y contenerización de los diferentes servicios que componen el proyecto.
+
+## Índice:
+
+- [Extrucura del proyecto](#estructura)
+- [Uso de Docker](#docker)
+- [Instalación](#instalacion)
+
+
+
+
+##  Estructura del proyecto {estructura}
+
 Este proyecto está dividido en tres carpetas principales: "logica", "presentacion" y "servicios".
 
 La estructura de carpetas debe ser la siguiente:
@@ -62,13 +83,15 @@ La carpeta "presentacion" contiene los archivos de Angular para la interfaz de u
 
 La carpeta "servicios" contiene los archivos de Django para la lógica del negocio. Esta carpeta se encarga de la comunicación con la base de datos y provee la funcionalidad para la API.
 
-## Docker
+## Docker {#docker}
 
-Además, el proyecto utiliza un archivo docker-compose.yml para orquestar los contenedores de Docker necesarios. Se utiliza un contenedor de MySQL para la base de datos, un contenedor para la presentación y otro contenedor para los servicios.
+La tecnología de contenedores Docker se utiliza en este proyecto para orquestar los contenedores necesarios. Docker ofrece una solución eficiente y escalable para gestionar aplicaciones en diferentes entornos. Permite empaquetar una aplicación junto con sus dependencias en un contenedor, lo que facilita la portabilidad y la ejecución en diferentes plataformas.
 
-El archivo docker-compose.yml está configurado para exponer el puerto 3306 de MySQL para la comunicación con la base de datos, el puerto 80 para la presentación y el puerto 8000 para los servicios. También se han establecido volúmenes para persistir los datos de la base de datos.
+En este caso, se utiliza un contenedor de MySQL para la base de datos, otro contenedor para la presentación y un tercer contenedor para los servicios. El archivo docker-compose.yml se encarga de orquestar estos contenedores, exponer los puertos necesarios para la comunicación y establecer volúmenes para persistir los datos de la base de datos.
 
-# Instalación
+El uso de Docker permite una gestión más eficiente de la infraestructura de la aplicación, ya que cada contenedor se ejecuta en un entorno aislado y se pueden configurar diferentes versiones y dependencias de la aplicación. Además, el uso de contenedores permite una mayor flexibilidad en la implementación y escala de la aplicación, ya que se pueden agregar o eliminar contenedores según sea necesario.
+
+# Instalación {instalacion}
 
 Descargar el proyecto desde el repositorio de GitHub:
 
@@ -297,6 +320,7 @@ SI quieres terminal el proceso solo tienes que presionar ctrl+c en la terminal d
 docker-compose down
 ```
 
-Eso es todo, espero que les sirva.
 
-BY: Gustavo Montoya
+## Proyecto
+
+> By: **Gustavo Montoya**
