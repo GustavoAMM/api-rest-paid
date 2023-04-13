@@ -257,3 +257,46 @@ Listo ya tenemos la imagen de nuestra api creada.
 > Si es asi y despues de comprobar que funciona, elimina el contenedor de django y vuelve a crear la imagen con los archivos de bd.py y alembic.ini apuntando a bd en lugar de 127.0.0.1 o localhost (según sea el caso).
 
 
+## Docker Compose
+
+Dentro de el archivo docker-compose.yml, Hacemos las siguientes modificaciones si tienes una configuración diferente a la mía:
+
+- db
+
+    - Si tu contenedor de mysql es diferente a el mio, cambia el container_name, MYSQL_ROOT_PASSWORD, MYSQL_DATABASE por los tuyos.
+    - si no quieres usar un volumen para guardar los datos de la base de datos, elimina la linea `volumes: - ./mysql:/var/lib/mysql` y solo deja `image: mysql:5.7`
+
+- presentacion
+
+    - Si tu contenedor de angular es diferente a el mio, cambia el container_name, ports y image por los tuyos.
+
+- api
+
+    - Si tu contenedor de django es diferente a el mio, cambia el container_name, ports y image por los tuyos.  
+
+
+Una vez que tenemos las imagenes de las aplicaciones, vamos a ejecute el archivo `docker-compose.yml` para poder corre las aplicaciones juntas.
+
+Dentro de la carpeta principal de nuestro proyecto, es decir, `paid`, ejecutamos el siguiente comando de Docker:
+
+```
+docker-compose up
+```
+
+Muchas veces el procesos va a fallar por que la base de datos no esta lista, para solucionar esto, SIN CERRAR EL PROCESO, ejecutamos el siguiente comando en OTRA terminal:
+
+```
+docker restart api
+```
+
+Si todo salió bien, debería verse la página de inicio de la aplicación, en la dirección `http://localhost:80`.
+
+SI quieres terminal el proceso solo tienes que presionar ctrl+c en la terminal donde ejecutaste el comando `docker-compose up` y luego ejecutar el siguiente comando:
+
+```
+docker-compose down
+```
+
+Eso es todo, espero que les sirva.
+
+BY: Gustavo Montoya
