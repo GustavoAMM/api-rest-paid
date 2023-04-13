@@ -16,14 +16,14 @@ Proyecto api-rest para Tecnologías y Aplicaciones en Internet
 
 ## Índice:
 
-- [Extrucura del proyecto](#estructura)
-- [Uso de Docker](#docker)
+- [Extrucura del proyecto](#seccion-1)
+- [Uso de Docker](#seccion-2)
 - [Instalación](#instalacion)
 
 
 
 
-##  Estructura del proyecto {#estructura}
+##  Estructura del proyecto {#seccion-1}
 
 Este proyecto está dividido en tres carpetas principales: "logica", "presentacion" y "servicios".
 
@@ -84,7 +84,7 @@ La carpeta "presentacion" contiene los archivos de Angular para la interfaz de u
 
 La carpeta "servicios" contiene los archivos de Django para la lógica del negocio. Esta carpeta se encarga de la comunicación con la base de datos y provee la funcionalidad para la API.
 
-## Docker {#docker}
+## Docker {#seccion-2}
 
 La tecnología de contenedores Docker se utiliza en este proyecto para orquestar los contenedores necesarios. Docker ofrece una solución eficiente y escalable para gestionar aplicaciones en diferentes entornos. Permite empaquetar una aplicación junto con sus dependencias en un contenedor, lo que facilita la portabilidad y la ejecución en diferentes plataformas.
 
