@@ -184,6 +184,9 @@ Si quieres correr el proyecto individual de angular, puedes hacerlo con el sigui
 ```
 docker run -p 80:80 presentacion:1.0.0
 ```
-Ingresa a http://localhost:80 para ver la aplicación. Si todo salió bien, debería verse la página de inicio de la aplicación.
+Ingresa a `http://localhost:80` para ver la aplicación. Si todo salió bien, debería verse la página de inicio de la aplicación pero sin funcionalidad.
+
+> En caso de correrlo el contenedor, detenlo con ctrl+c y para evitar errores en el futuro, elimina el contenedor.
+
 
 
