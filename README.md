@@ -186,7 +186,7 @@ sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
 string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
 ```
 
-## Presentacion - Angular
+## Presentación - Angular
 
 Dentro de la carpeta "presentacion", ejecutamos el siguiente comando para instalar las dependencias:
 
