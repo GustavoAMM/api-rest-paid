@@ -111,6 +111,7 @@ sqlalchemy.url = mysql+mysqldb://root:root@127.0.0.1:3306/test
 ```
 > si es windows o tienes errores futuros cambia la ip por localhost:3306
 
+
 En bd.py, cambiamos la linea:
 
 ```
@@ -131,12 +132,17 @@ alembic upgrade head
 
 Listo ya tenemos la base de datos creada y migrada.
 
-> Sí por error llegaras a tener error en la migración, puedes borrar la base de datos y volver a crearla con el comando,
-> A mi me paso que se soluciono con:
+> Sí por error llegaras a tener error en la migración, a mi me paso que se soluciono con:
 > ```
 > alembic revision -m "alembic"
 > alembic history
 > alembic upgrade head
 > ```
 
-!!! Volvemos a cambiar los archivos alembic.ini y bd.py a su estado original. !!!
+**!!! Volvemos a cambiar los archivos alembic.ini y bd.py a su estado original. !!!**
+
+```
+sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
+string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
+```
+
