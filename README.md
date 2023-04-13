@@ -76,7 +76,7 @@ Descargar el proyecto desde el repositorio de GitHub:
 git clone https://github.com/GustavoAMM/api-rest-paid
 ```
 
-> Cambia el nombre de la carpeta a paid
+**Cambia el nombre de la carpeta a paid**
 
 ## Contenedor de MySQL
 
@@ -123,6 +123,19 @@ string_db = f"{plugin_db}://{user}:{pass_}@127.0.0.1:3306/{db}"
 ```
 > si es windows o tienes errores futuros cambia la ip por localhost:3306
     
+Instalamos alembic con el siguiente comando:
+
+```
+pip install alembic
+```
+
+> Si faltan dependencias, puedes verlas en el archivo requirements.txt o bien instalar todas ejecutando el siguiente comando:
+> ```
+> pip install -r requirements.txt
+> ```
+> Ten en cuenta que esas dependencias fueron instaladas en mi sistema por ende algunas son inecesarias, si tienes problemas con alguna, puedes instalarla individualmente.
+
+
 
 Ahora, dentro de la carpeta "logica", ejecutamos el siguiente comando para crear las migraciones:
 
@@ -186,7 +199,61 @@ docker run -p 80:80 presentacion:1.0.0
 ```
 Ingresa a `http://localhost:80` para ver la aplicación. Si todo salió bien, debería verse la página de inicio de la aplicación pero sin funcionalidad.
 
-> En caso de correrlo el contenedor, detenlo con ctrl+c y para evitar errores en el futuro, elimina el contenedor.
+> En caso de correr el contenedor, detenlo con ctrl+c y para evitar errores en el futuro, elimina el contenedor.
 
+## Servicios - Django
+
+En nuestro sistema es necesario añadir una variable de entorno, `PYTHONPATH` apuntando a nuestra carpeta raiz `paid`. Para ello dentro de nuestro archivo .bashrc o .zshrc añadimos la siguiente linea:
+
+```
+export PYTHONPATH=$PYTHONPATH:/home/angel/Escritorio/paid
+```
+En mi caso mi usuario es angel y la ruta de mi proyecto es /home/angel/Escritorio/paid
+Sí es windows cambia la ruta /home/usuario/Escritorio/paid a C:\Users\usuario\Escritorio\paid
+
+**ES IMPORTANTE QUE LA RUTA SEA LA CORRECTA, DE LO CONTRARIO NO FUNCIONARÁ.**
+
+> Tal vez tengas que reiniciar tu terminal o tu sistema para que se aplique el cambio
+
+Algunas dependencias de Python para que el proyecto funcione correctamente:
+
+```
+pip install django
+pip install django-cors-headers
+pip install mysqlclient
+pip install SQLAlchemy
+pip install alembic
+```
+> Si faltan dependencias, puedes verlas en el archivo requirements.txt o bien instalar todas ejecutando el siguiente comando:
+> ```
+> pip install -r requirements.txt
+> ```
+> Ten en cuenta que esas dependencias fueron instaladas en mi sistema por ende algunas son inecesarias, si tienes problemas con alguna, puedes instalarla individualmente.
+
+
+Ahora vamos a crear la imagen de Docker para los servicios.
+
+Dentro de la carpeta principal de nuestro proyecto, es decir, `paid`, ejecutamos el siguiente comando para crear la imagen de Docker:
+
+```
+docker build -t api:1.0.0 .
+```
+
+Comprobamos que la imagen se haya creado correctamente puedes ver las imagenes de docker con el siguiente comando:
+
+```
+docker images
+```
+
+Listo ya tenemos la imagen de Docker creada.
+
+>Sí llegaras a quere correr el proyecto individual de django, puedes hacerlo con el siguiente comando:
+>
+>```
+>docker run -p 8000:8000 api:1.0.0
+>```
+>
+>Pero tendrias que tener el contenedor de mysql corriendo, y modificar los archivos bd.py y alembic.ini para que apunten a 127.0.0.1:3306 en lugar de localhost y volver a crear esta imagen, para guardar los cambios.
+> Si es asi y despues de comprobar que funciona, elimina el contenedor de django y vuelve a crear la imagen con los archivos de bd.py y alembic.ini apuntando a bd en lugar de 127.0.0.1 o localhost (según sea el caso).
 
 
