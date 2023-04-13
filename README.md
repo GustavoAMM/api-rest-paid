@@ -146,3 +146,44 @@ sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
 string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
 ```
 
+### Presentacion - Angular
+
+Dentro de la carpeta "presentacion", ejecutamos el siguiente comando para instalar las dependencias:
+
+```
+npm install
+```
+
+Ahora, ejecutamos el siguiente comando para iniciar el servidor de Angular:
+
+```
+ng serve
+```
+Ingresar a http://localhost:4200/ para ver la aplicación. Si todo salió bien, debería verse la página de inicio de la aplicación.
+
+Ahora que sabemos que funciona el proyecto y despues de terminar el proceso con ctrl+c , vamos a crear la imagen de Docker para la presentación.
+
+Hacmos un build del proyecto con el siguiente comando:
+
+```
+npm run build
+```
+
+Ahora creamos la imagen de Docker con el siguiente comando:
+
+```
+docker build -t presentacion:1.0.0 .
+```
+Comprobamos que la imagen se haya creado correctamente con el siguiente comando:
+
+```
+docker images
+```
+Si quieres correr el proyecto individual de angular, puedes hacerlo con el siguiente comando:
+
+```
+docker run -p 80:80 presentacion:1.0.0
+```
+Ingresa a http://localhost:80 para ver la aplicación. Si todo salió bien, debería verse la página de inicio de la aplicación.
+
+
