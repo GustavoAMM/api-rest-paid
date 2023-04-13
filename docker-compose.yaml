@@ -1,11 +1,6 @@
 version: '3.7'
 
 services:
-  # docker run --name mysql-python
-  # -v C:\Users\jgust\Documents\vol:/var/lib/mysql 
-  # -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test 
-  # -d -p 3306:3306 mysql:latest
-
   db:
     image: mysql
     container_name: mysql-contenedor
