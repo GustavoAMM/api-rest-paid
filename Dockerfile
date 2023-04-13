@@ -11,7 +11,6 @@ RUN apt-get install -y default-libmysqlclient-dev
 RUN pip install --upgrade pip
 RUN pip install -r ./servicios/requirements.txt
 RUN pip install --upgrade sqlalchemy
-# ENV PYTHONPATH=/paid
 ENV PYTHONPATH="$PYTHONPATH:/paid"
 
 EXPOSE 8000
