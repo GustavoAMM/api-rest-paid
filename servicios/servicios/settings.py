@@ -35,8 +35,6 @@ ALLOWED_HOSTS = ["*"]
 # 'corsheaders.middleware.CorsMiddleware'
 # 'django.middleware.common.CommonMiddleware'
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
