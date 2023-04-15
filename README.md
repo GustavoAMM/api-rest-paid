@@ -325,6 +325,229 @@ SI quieres terminal el proceso solo tienes que presionar ctrl+c en la terminal d
 ```
 docker-compose down
 ```
+## Servidor de producción
+
+
+Vamos a usar el servicio de aws para subir el proyecto a un servidor, en especifico vamos a usar el servicio de EC2.
+
+En mi caso, yo cree una instancia de debian, pero puedes usar la que quieras.
+
+Descarga el archivo .pem que te da aws y guarda el archivo en la carpeta .ssh de tu usuario.
+
+> aws te da intrucciones de como conectarte a tu instancia.
+
+### reglas de seguridad
+
+En el servicio de EC2, vamos a la instancia que creamos y en la pestaña de seguridad, vamos a agregar una regla de entrada para los siguientes puertos:
+
+- 22 0.0.0.0/0 -> ssh -> conectarse a la instancia
+- 80 0.0.0.0/0 -> http -> angular
+- 8000 0.0.0.0/0 -> TCP personalizado -> django
+- 3306 0.0.0.0/0 -> MYSQL/Aurora -> mysql
+
+
+Una vez conectado a tu instancia, descarga el proyecto de github.
+
+```
+https://github.com/GustavoAMM/api-rest-paid
+```
+
+cambia el nombre de la carpeta a "paid" o como este la configuraste en el docker-compose.yml
+
+### aws
+
+como es una instancia de debian, vamos a instalar las siguientes aplicaciones:
+
+- docker
+- python3
+- pip3
+- git
+- node
+- npm 
+- angular
+
+
+## Contenedor temporal de MySQL
+
+Vamos a usar un volumen para persistir los datos de la base de datos. Para ello, creamos una carpeta llamada "vol" en el directorio nuestro usuario
+
+
+Para iniciar el contenedor de MySQL, ejecutar el siguiente comando:
+
+```
+docker run --name mysql-contenedor -v /home/usuario/vol:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=test -d -p 3306:3306 mysql:latest
+```
+
+Dentro de la carpeta "logica" vamos a modificar TEMPORALMENTE los archivos:
+
+- alembic.ini
+- bd.py
+
+En alembic.ini, cambiamos la linea:
+
+```
+sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
+```
+por
+
+```
+sqlalchemy.url = mysql+mysqldb://root:root@127.0.0.1:3306/test
+```
+> si es windows o tienes errores futuros cambia la ip por localhost:3306
+
+
+En bd.py, cambiamos la linea:
+
+```
+string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
+```
+por
+```
+string_db = f"{plugin_db}://{user}:{pass_}@127.0.0.1:3306/{db}"
+```
+> si es windows o tienes errores futuros cambia la ip por localhost:3306
+    
+Instalamos alembic con el siguiente comando:
+
+```
+pip install alembic
+```
+
+Ahora, dentro de la carpeta "logica", ejecutamos el siguiente comando para crear las migraciones:
+
+```
+alembic upgrade head
+```
+
+Listo ya tenemos la base de datos creada y migrada.
+
+> Elimina el contenedor de mysql-contenedor para evitar errores
+
+### angular 
+
+Dentro de la carpeta "presentacion", ejecutamos el siguiente comando para instalar las dependencias:
+
+```
+npm install
+```
+
+Ahora ingresamos a la siguiente ruta:
+
+presentacion/src/app/createuser.service.ts, modificamos las lineas:
+
+```
+    return this.http.post<SaveUserResponse>('http://localhost:8000/users', formData);
+    return this.http.get<any>('http://localhost:8000/getusers');
+```
+
+vamos a quitar localhost y vamos a colorar la ip de la instancia de aws.
+
+```
+    return this.http.post<SaveUserResponse>('http://ip:8000/users', formData);
+    return this.http.get<any>('http://ip:8000/getusers');
+```
+
+Ahora ejecutamos el siguiente comando para hacer el build de angular:
+
+```
+npm run build
+```
+
+Dentro de la carpeta "presentacion", ejecutamos el siguiente comando para crear la imagen de Docker:
+
+```
+docker build -t presentacion:1.0.0 .
+```
+
+### api
+
+Dentro de nuestra instancia de aws vamos a añadir una variable de entorno PYTHONPATH, con el valor de la ruta de nuestro proyecto.
+
+```
+/home/usuario/api
+```
+
+Dentro de la carpeta de "logica", vamos a modificar los archivos:
+
+- alembic.ini
+- bd.py
+
+En alembic.ini, cambiamos la linea:
+
+```
+sqlalchemy.url = mysql+mysqldb://root:root@db:3306/test
+```
+por la ip de la instancia de aws
+
+```
+sqlalchemy.url = mysql+mysqldb://root:root@ip:3306/test
+```
+
+En bd.py, cambiamos la linea:
+
+```
+string_db = f"{plugin_db}://{user}:{pass_}@db:3306/{db}"
+```
+
+por la ip de la instancia de aws
+
+```
+string_db = f"{plugin_db}://{user}:{pass_}@ip:3306/{db}"
+```
+
+Vamos a modificar el archivo de settings.py, que esta ubicado en la carpeta "servicios/servicios/settings.py"
+
+```
+ALLOWED_HOSTS = ["*"]
+```
+
+por la ip de la instancia de aws mas los puertos que vamos a usar que son 8000, 3306 y 80
+
+```
+ALLOWED_HOSTS = ["ip:8000", "ip:3306", "ip:80"]
+```
+> Si en el futuro da error tambien agregar localhost y para no fallar xd agregar * para que acepte cualquier ip
+
+Ahora estando en la carpeta raiz de nuestro proyecto vamos a crear la imagen de docker para la api:
+
+```
+docker build -t api:1.0.0 .
+```
+
+### docker-compose
+
+Dentro de el archivo docker-compose.yml, vamos a modificar las lineas:
+
+```
+      - /home/angel/Documentos/vol:/var/lib/mysql
+
+```
+haciendo referencia a la ubicacion de nuestro volumen en nuestra instancia de aws.
+
+```
+      - /home/devbian/vol:/var/lib/mysql
+```
+
+Al igual vamos a modificar la linea:
+
+```
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD}", "--wait=5s"]
+
+```
+
+por la ip de la instancia de aws
+
+```
+      test: ["CMD-SHELL", "mysqladmin ping -h ip -u root -p${MYSQL_ROOT_PASSWORD}", "--wait=5s"]
+```
+
+Ahora vamos a levantar el proyecto con el siguiente comando:
+
+```
+docker-compose up -d
+```
+
+Ahora vamos a un navegador y vamos a ingresar a la ip de nuestra instancia de aws, si todo salio bien, deberiamos ver la pagina de angular.
 
 
 ## Proyecto
