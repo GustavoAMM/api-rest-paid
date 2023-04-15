@@ -9,7 +9,7 @@ services:
       MYSQL_DATABASE: test
     volumes:
       # - C:\Users\jgust\Documents\vol:/var/lib/mysql
-      - /home/angel/Plantillas/vol:/var/lib/mysql
+      - /home/angel/Documentos/vol:/var/lib/mysql
     ports:
       - 3306:3306
     healthcheck:
