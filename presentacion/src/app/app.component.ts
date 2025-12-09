@@ -4,9 +4,10 @@ import { Message } from 'primeng/api';
 import { SaveUserResponse } from './save-user-response.interface';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    standalone: false
 })
 export class AppComponent {
   title = 'presentacion';

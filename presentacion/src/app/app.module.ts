@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/inputtext';
@@ -14,21 +14,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    InputTextModule,
-    ButtonModule,
-    MessagesModule,
-    BrowserAnimationsModule,
-    DialogModule
-  ],
-  exports: [RouterModule],
-  providers: [MessageService],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [AppComponent],
+    exports: [RouterModule],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        InputTextModule,
+        ButtonModule,
+        MessagesModule,
+        BrowserAnimationsModule,
+        DialogModule], providers: [MessageService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
